@@ -1,33 +1,49 @@
-public class personDetail {
-    private String firstname;
-    private String lastname;
-    private int age;
+// Interface with method declaration
+interface ContactDetail {
+    void showContactDetails();
+}
 
+// Abstract class with constructor and method
+abstract class Customer {
+    String name;
 
-    //Constructor concept
-    personDetail(String firstname,String lastname,int age){
-        this.firstname=firstname;
-        this.lastname = lastname;
-        this.age = age;
-
-
-        System.out.println(this.firstname + " " + this.lastname);
-        System.out.println("I am "+ this.age + "year old.");
+    Customer(String name) {
+        this.name = name;
     }
 
-//    public void setValues(String firstname,String lastname,int age){
-//        this.firstname=firstname;
-//        this.lastname = lastname;
-//        this.age = age;
-//    }
-//
-//    public void getValues(){
-//        System.out.println(this.firstname + " " + this.lastname);
-//        System.out.println("I am "+ this.age + "year old.");
-//    }
+    abstract void customerPay();
 
-    public static void main(String[] args){
-        personDetail dipak = new personDetail("Dipak","Jha",21);
+    void customerDetail() {
+        System.out.println("Customer name: " + name);
     }
 }
 
+// Concrete class
+class Dipak extends Customer implements ContactDetail {
+    int number = 123;
+    String email = "abc@gmail.com";
+
+    Dipak(String name) {
+        super(name);
+    }
+
+    @Override
+    void customerPay() {
+        System.out.println("Detail of Customer: name: " + name + ", number: " + number + ", email: " + email);
+    }
+
+    @Override
+    public void showContactDetails() {
+        System.out.println("Contact Number: " + number + ", Email: " + email);
+    }
+}
+
+// Main class
+public class personDetail {
+    public static void main(String[] args) {
+        Dipak test = new Dipak("abcd");
+        test.customerPay();
+        test.customerDetail();
+        test.showContactDetails();
+    }
+}
